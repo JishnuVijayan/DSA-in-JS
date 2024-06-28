@@ -2,6 +2,8 @@
 // Divide and conquer
 // Divide, conquer, merge.
 // Time complexity is O(nlogn) (better than O(n^2))
+// if array have 8 element then 3 splits (2^3), for 16 elements 4 splits (2^4), for 32 elements 5 splits (2^5) log n complexity.
+// On each merging in splited arrays there is n comparison so TC = (nlogn)
 
 function merge(arr1, arr2) {
   let result = [];
