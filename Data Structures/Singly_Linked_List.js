@@ -92,14 +92,26 @@ class SinglyLinkedList {
     }
     return false;
   }
+  // inserts a new node at the given index.
+  insert(index, value) {
+    if (index < 0 || index > this.length) return false; // index can be equal to the length of the list
+    if (index === 0) return !!this.unshift(value); // !!this.unshift(value); will return true if there is string and false if not
+    if (index === this.length) return !!this.push(value); // both unshift and pop returns the list completely but we juect want to return true of false.
+    let newNode = new Node(value);
+    let prevNode = this.get(index - 1);
+    newNode.next = prevNode.next;
+    prevNode.next = newNode;
+    this.length++;
+    return true;
+  }
 }
 
 let list = new SinglyLinkedList();
-console.log(list.push("Hi"));
+console.log(list.push("10"));
 
-console.log(list.push("Jishnu"));
+console.log(list.push("30"));
 
-console.log(list.push("How are you"));
+console.log(list.push("50"));
 
 // list.shift();
 // console.log(list);
@@ -109,8 +121,13 @@ console.log(list.push("How are you"));
 
 // console.log(list.unshift(1));
 
-console.log(list.get(1));
+// console.log(list.get(1));
 
-console.log(list.set(1, "Kumar"));
+// console.log(list.set(1, "Kumar"));
 
+// console.log(list.get(1));
+
+list.insert(1, 20);
 console.log(list.get(1));
+list.insert(3, 40);
+console.log(list.get(3));
