@@ -76,12 +76,21 @@ class SinglyLinkedList {
     return currentNode;
   }
   // changing the value of a node by accessing it with it's position.
+  // set(index, value) {
+  //   if (index < 0 || index >= this.length) return null;
+  //   let currentNode = this.head;
+  //   for (let i = 0; i < index; i++) currentNode = currentNode.next;
+  //   currentNode.value = value;
+  //   return currentNode;
+  // }
+
   set(index, value) {
-    if (index < 0 || index >= this.length) return null;
-    let currentNode = this.head;
-    for (let i = 0; i < index; i++) currentNode = currentNode.next;
-    currentNode.value = value;
-    return currentNode;
+    let foundNode = this.get(index);
+    if (foundNode) {
+      foundNode.value = value;
+      return foundNode;
+    }
+    return false;
   }
 }
 
