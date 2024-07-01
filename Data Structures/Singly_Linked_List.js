@@ -116,14 +116,44 @@ class SinglyLinkedList {
     this.length--;
     return tempNode;
   }
+
+  // 13   -> 20   -> 30   ->  50          ---->         13 <-   20 <-   30 <-   50
+  // head                      tail                      tail                    head
+  // reverses the linked list
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+    let prev = null;
+    let nextNode;
+    for (let i = 0; i < this.length; i++) {
+      nextNode = node.next;
+      node.next = prev;
+      prev = node;
+      node = nextNode;
+    }
+    return this;
+  }
+  print() {
+    let arr = [];
+    let current = this.head;
+    while (current) {
+      arr.push(current.value);
+      current = current.next;
+    }
+    console.log(arr);
+  }
 }
 
 let list = new SinglyLinkedList();
-console.log(list.push("10"));
-
-console.log(list.push("30"));
-
-console.log(list.push("50"));
+list.push(10);
+list.push(30);
+list.push(50);
+list.push(70);
+list.push(90);
+list.print();
+list.reverse();
+list.print();
 
 // list.shift();
 // console.log(list);
@@ -144,5 +174,3 @@ console.log(list.push("50"));
 // list.insert(3, 40);
 // console.log(list.get(3));
 
-list.remove(1);
-console.log(list.get(1));
