@@ -69,17 +69,37 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+  get(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    let currentNode;
+    if (index <= (this.length / 2)) {
+      currentNode = this.head;
+      for (let i = 0; i < index; i++) {
+        currentNode = currentNode.next;
+      }
+    } else {
+      currentNode = this.tail;
+      for (let i = this.length - 1; i > index; i--) {
+        currentNode = currentNode.prev;
+      }
+    }
+    return currentNode;
+  }
 }
 
 let list = new DoublyLinkedList();
-console.log(list.push(1));
-console.log(list.push(3));
-console.log(list.push(5));
-console.log(list.shift());
-console.log(list);
-console.log(list.unshift(10));
-console.log(list);
-console.log(list.unshift(20));
-console.log(list);
-console.log(list.shift());
-console.log(list);
+list.push(1);
+list.push(3);
+list.push(5);
+list.push(7);
+list.push(9);
+list.push(11);
+console.log(list.get(2));
+// console.log(list.shift());
+// console.log(list);
+// console.log(list.unshift(10));
+// console.log(list);
+// console.log(list.unshift(20));
+// console.log(list);
+// console.log(list.shift());
+// console.log(list);
