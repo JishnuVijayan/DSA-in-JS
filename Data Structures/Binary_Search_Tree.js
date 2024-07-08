@@ -71,6 +71,17 @@ class BinarySearchTree {
     visit(current);
     return visited;
   }
+  DFSPostorder() {
+    let visited = [];
+    let current = this.root;
+    function visit(node) {
+      if (node.left) visit(node.left);
+      if (node.right) visit(node.right);
+      visited.push(node.value);
+    }
+    visit(current);
+    return visited;
+  }
 }
 
 var tree = new BinarySearchTree();
@@ -83,4 +94,4 @@ tree.insert(20);
 //tree.insert(70);
 //console.log(tree.find(16));
 
-console.log(tree.DFSPreorder());
+console.log(tree.DFSPostorder());
