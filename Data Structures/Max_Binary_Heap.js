@@ -9,7 +9,11 @@ class MaxBinaryHeap {
   }
   insert(element) {
     this.values.push(element);
+    this.bubbleUp();
+  }
+  bubbleUp(){
     let newNodeIndex = this.values.length - 1;
+    let element = this.values[newNodeIndex];
     while (newNodeIndex > 0) {
       let parentIndex = Math.floor((newNodeIndex - 1) / 2);
       let parent = this.values[parentIndex];
