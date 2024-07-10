@@ -1,7 +1,7 @@
 // Problem with this apporach
 // Not constant time - Linear time (Depends on the length of the string)
 // could be little more random
-
+//a.charCodeAt(0) - 96 = 1.
 function hashFunction(key, arrLen) {
   let total = 0;
   for (let char of key) total += char.charCodeAt(0) - 96;
