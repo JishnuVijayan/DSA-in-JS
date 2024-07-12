@@ -1,4 +1,6 @@
 // undirected graph
+// both depthFirstTraversalRecursive and depthFirstTraversalIterative gives different result.
+// both are correct, difference is that the node have different neighbours and we can do the traversal by going through any neighbouring node.
 class Graph {
   constructor() {
     this.adjacencyList = {};
@@ -38,7 +40,7 @@ class Graph {
     delete this.adjacencyList[vertex];
   }
 
-  depthFirstTraversal(start) {
+  depthFirstTraversalRecursive(start) {
     let visited = {}; // stores{A:true, b:ture..}
     let result = [];
     let adjacencyList = this.adjacencyList; // we can't access this.adjacencey list inside the function
@@ -51,6 +53,24 @@ class Graph {
       });
     }
     dfs(start);
+    return result;
+  }
+  depthFirstTraversalIterative(start) {
+    let stack = [start];
+    let result = [];
+    let visited = [];
+    let vertex;
+    visited[start] = true;
+    while (stack.length) {
+      vertex = stack.pop();
+      result.push(vertex);
+      this.adjacencyList[vertex].forEach((neighbour) => {
+        if (!visited[neighbour]) {
+          visited[neighbour] = true;
+          stack.push(neighbour);
+        }
+      });
+    }
     return result;
   }
 }
@@ -71,7 +91,8 @@ g.addEdge("D", "E");
 g.addEdge("D", "F");
 g.addEdge("E", "F");
 
-console.log(g.depthFirstTraversal("A"));
+console.log(g.depthFirstTraversalRecursive("A"));
+console.log(g.depthFirstTraversalIterative("A"));
 
           //     A 
           //   /   \
