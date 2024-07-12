@@ -37,16 +37,46 @@ class Graph {
     }
     delete this.adjacencyList[vertex];
   }
+
+  depthFirstTraversal(start) {
+    let visited = {}; // stores{A:true, b:ture..}
+    let result = [];
+    let adjacencyList = this.adjacencyList; // we can't access this.adjacencey list inside the function
+    function dfs(vertex) {
+      if (!vertex) return null;
+      result.push(vertex);
+      visited[vertex] = true;
+      adjacencyList[vertex].forEach((neighbour) => {
+        if (!visited[neighbour]) return dfs(neighbour);
+      });
+    }
+    dfs(start);
+    return result;
+  }
 }
 
 let g = new Graph();
-g.addVertex("India");
-g.addVertex("UK");
-g.addVertex("South Africa");
-console.log(g);
-g.addEdge("India", "South Africa");
-g.addEdge("India", "UK");
-console.log(g);
-// g.removeEdge("India", "South Africa");
-g.removeVertex("South Africa");
-console.log(g);
+g.addVertex("A");
+g.addVertex("B");
+g.addVertex("C");
+g.addVertex("D");
+g.addVertex("E");
+g.addVertex("F");
+
+g.addEdge("A", "B");
+g.addEdge("A", "C");
+g.addEdge("B", "D");
+g.addEdge("C", "E");
+g.addEdge("D", "E");
+g.addEdge("D", "F");
+g.addEdge("E", "F");
+
+console.log(g.depthFirstTraversal("A"));
+
+          //     A 
+          //   /   \
+          //  B      C
+          //  |      |
+          //  D------E
+          //   \    /
+          //     F
