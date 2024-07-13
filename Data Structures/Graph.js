@@ -73,6 +73,25 @@ class Graph {
     }
     return result;
   }
+  breadthFirstTraversal(start) {
+    let queue = [start];
+    let result = [];
+    let visited = {};
+    visited[start] = true;
+    let vertex;
+    while (queue.length) {
+      vertex = queue.shift(); // Dequeue the first element
+      result.push(vertex);
+      this.adjacencyList[vertex].forEach((neighbor) => {
+        // this.adjacencyList[vertex].slice().reverse().forEach((neighbor) can be used to change the order
+        if (!visited[neighbor]) {
+          visited[neighbor] = true; // Mark neighbor as visited
+          queue.push(neighbor); // Enqueue neighbor
+        }
+      });
+    }
+    return result;
+  }
 }
 
 let g = new Graph();
@@ -93,6 +112,7 @@ g.addEdge("E", "F");
 
 console.log(g.depthFirstTraversalRecursive("A"));
 console.log(g.depthFirstTraversalIterative("A"));
+console.log(g.breadthFirstTraversal("A"));
 
           //     A 
           //   /   \
