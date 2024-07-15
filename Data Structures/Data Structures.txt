@@ -1,0 +1,329 @@
+SINGLY LINKED LIST
+
+12 -> 20 -> 30 -> 41 -> 1
+head(12)                tail(1)
+Linked list doesn't have indixes.
+Connected via 'next' pointer.
+Random access is not allowed.
+Collection of nodes
+Each node contains a value and a reference to the next node
+In pop we have to traverse the entire list because we don't have a backward pointer.
+Singly Linked list excels at insertion and deletion compared to array.
+Since array have indexes deleting/ inserting elements in the begining is hard because we have to re-index. (deletion and insertion at the end is easy.)
+In Linked list it is easy to delete/insert the elements in the begining.
+
+Operations 
+
+push()    -> add one at the end(tail).
+pop()     -> remove one from the last.
+shift()   -> remove a new node from the begining(head).
+unshift() -> adds a new node at the begining.
+get()     -> retrieve a node by it's position(position starts from 0)
+set()     -> changing the value of a node by accessing it with it's position.
+insert()  -> inserts a new node at the given index (the previous node will point to the newly inserted node and the new node will point to the next node of the previous node).
+             for eg: if we want to insert at 3rd index a value of 99, 3rd node(2nd index node) will point to the new node and new node will point to the 3rd index node of the previous linked list.
+remove()  -> removes a node at a given index
+reverse() -> Head becomes tail and tail becomes head and the next pointer changes;
+             for eg: 13   -> 20   -> 30   ->  50          ---->         13 <-   20 <-   30 <-   50
+                    head                      tail                      tail                    head
+Reverse is most imp in case of interviews.
+
+Complexities:
+
+insertion : O(1)
+removal   : Depends O(1) / O(n)
+searching : O(n)
+access    : O(n)
+
+
+
+
+
+DOUBLY LINKED LIST
+
+12 <-> 20 <-> 30 <-> 41 <-> 1
+
+Almost identical to Singly linked list, except every node has another pointer, to the previous node.
+it requires more memory and it is more efficient compared to Singly linked list
+
+
+OPERATIONS ARE SAME PROCEDURE AS SINGLY LINKED LIST, BUT THERE IS DIFFERENCE IN HOW WE ARE DOING IT.
+
+
+insertion : O(1)
+removal   : O(1)
+searching : O(n) (Optimized to n/2 but we consider it as n)
+access    : O(n)
+
+
+
+
+
+STACK
+
+Stack is a LIFO(Last In First Out) data structure.
+Stack can be inplemented using arrays or Linked list.
+Stacks are used in managing function invocations(eg: call stack for recursion), Undo / Redo, history of webpages\
+
+Using array we can use push(), pop() to build a stack, also unshift(), shift(), but in case on array insertion and deletion from/in the begining requires reindexing so inefficient for lerge data.
+Incase of stack we don't need indixes. 
+we cannot access elements using index.
+so we can implement it using linked list
+ 
+
+Complexities:
+
+insertion : O(1)
+removal   : O(1) 
+searching : O(n)
+access    : O(n)
+
+
+
+
+
+
+QUEUE
+
+Queue is a FIFO(First In First Out) data structure.
+Queue can be inplemented using arrays or Linked list.
+Queue can be used in background tasks, uploading resources, Printing/ Task processing.
+Enqueue - Insert an element
+Dequeu  - Delete an element
+Using array we can use push(), shift() to build a stack, also unshift(), pop()
+
+
+Complexities:
+
+insertion : O(1)
+removal   : O(1) 
+searching : O(n)
+access    : O(n)
+
+
+
+
+
+TREES 
+
+Trees are data structure that consist of nodes in a parent/child relationship.
+Branching structure. 
+List - Linear
+Trees - Non-linear
+A node can only point to a children (Refer Trees 1 in Images folder)
+There should be only 1 node. (Refer Trees 2 in Images folder)
+Root - Top node of the Tree
+Child - A node directly connected to another node when moving away from the root
+Parent - converse of child
+Siblings - A group of nodes with same parent
+Leaf - A node with no child
+Edge - Connection between 2 nodes
+Tree have lot of applications like HTML DOM, Network routing, Abstract syntax tree, AI, Machine Learning, Minimax algorithm(Tic tac toe), Folders in OS, computer file systems.
+There are manyu type of trees.
+
+Binary tree can have *atmost* 2 children.
+Binary search tree(BST) is a type of binary tree, it follows all the rule of binary tree and the values will be sorted.
+There should be a way to sort these values.
+Value less than the parent will be the left child and value greater than the parent will be in right side. 
+
+
+IN CASE OF BST:
+
+COMPLEXITIES:
+
+Insertion - O(logn)
+Searching - O(logn)
+
+(In both case based on if the value is less than the root or greater than the root we can actually avoid a large portion.)
+The above Complexities is not guaranteed because BST can have 0, 1, 2 nodes so sometimes a BST with 0 element in the left of the root and a million items to the right of the root is possible.
+
+
+TREE TRAVERSAL:
+Visiting each node in any tree exactly one time is called as Tree traversal.
+This is a classic computer science problem.
+Many ways of doing it.
+
+A) BFS (Breadth First Search):
+Refer BFS in Images
+
+
+
+
+
+
+B) DFS (Depth First Search):
+3 main methods 
+Inorder   - Refer DFS INORDER in Images
+Postorder - Refer DFS POSTORDER in Images
+Preorder  - Refer DFS PREORDER in Images
+
+
+Time complexity of BFS and DFS are same since they visit each node 1 time.
+So DFS and BFS are choosed according to space complexity.
+If a tree is lot wider than deep, then DFS would be less space.
+
+
+
+
+
+BINARY HEAP
+
+It is very similar to BST, but with some different rules
+In MAXBINARYHEAP, parent nodes are always larger than child nodes. (Refer MaxBinaryHeap in Images)
+In MINBINARYHEAP, parent nodes are always smaller than child nodes.
+Each parent can have ATMOST 2 child.
+A binary heap is as compact as possible. All the children of each node are as full as they can be and left children are filled out.
+Binary heaps are used to implement Priority queues.
+
+A MAXBINARYHEAP can be represneted using an array where at index 0 we will find the root and children of nth index is located at 2n+1 (Left Child) and 2n+2 (Right Child).
+Refer StoringMBH in Images.
+
+Like this, for any child node at n, parent will be floor((n - 1) / 2)
+
+The procesdure of deleting root node from the heap(effectively extracting the maximum element in a max-heap, or minimum element in the min-heap) and restoring the properties is called *down-heap*.
+This is also known as bubble-down, percolate-down, shift-down, trickle down, heapify down, cascade down, and extract-min/max.
+
+In this procedure we remove the root and replace with the last node, and then find the right spot for that replaced element. That's it, it will remove the node and will follow all the rules of Max Binaryheap.
+
+
+PRIORITY QUEUE - It is a DS where each element has a Priority. Elements with higher priorities are served before element with lower priorities.
+Can Implement using array (but it is naive approach).
+Heap is suitable.
+If the priorites are similar no particular order, so for that we can add insertion time or something like that.
+In heap left side will not be vacant if there is a right side. Because it always fill left node first.
+
+
+COMPLEXITIES:
+
+Insertion - O(logn)
+Removal   - O(logn)
+Search    - O(n)    // usually not used since it is not sorted
+
+
+
+
+
+HASH TABLE / HASH MAP:
+
+Have built in hash table in Pretty much all languages like JS, python, ruby etc..
+Hash tables are used to store key-value pairs.
+They are like arrays, but the keys are not ordered.
+Hash tables are commonly used because of their speed.
+
+Python have dictionaries, JS has object and maps, Java, Go & Scala have maps, Ruby has Hashes
+Hash functions convert keys in to Valid indexes to find where to insert.
+Hash table is used to protect the data, autentication
+
+What make a good hash:
+Fast
+Doesn't cluster output at specific indices, but distribute uniformily.
+Deterministic(Same input yields same output).
+a.charCodeAt(0)  =  gives numerical value of a.
+hi.charCodeAt(1) = gives numerical value of i
+
+Introducing prime numbers will reduce chance of collision.
+There is a higher chance of reduced collosion if the length of the table is a prime number(arrLen).
+
+collision means more than one value at same index.
+Even with a large array and a great hash function, collision are inevitable.
+For handiling collision there any many methods, among them 2 are:
+
+1) Separate chaining 
+At each index in our array we store values using a more sophisticated ds(eg: an array or linkedlist).
+Refer Separate chaining in Images
+
+2)Linear Probing
+It the index have already a value then it puts the value in the next vacant Index.
+Refer Linear Probing in Images
+
+
+COMPLEXITIES:(Avg cases)
+
+Insertion - O(1)
+Removal   - O(1)
+Access    - O(1)  
+
+if every key-value pairs are in 1 index it is similar to list so it have a complexity of O(n)
+
+
+
+
+GRAPHS:
+A graph ds consist of a finite(and possibly mutable) set of vertices and nodes or points, together with a set of unordered pairs of these vertices for an undirected graph or set of ordered pairs for a directed graph.
+In trees there will be onlu one path.
+Uses:
+Social networks, Location / Mapping, Routing algorithm, visual hierarchy, file system optimization, Recommendations
+
+Vertex - a node
+Edge   - Connection between nodes
+
+types: 
+undirected unweighted graph
+undirected weighted graph
+directed unweighted graph
+directed weighted graph
+
+Adjacency matrix:
+stores 1 / true if there is a edge between 2 nodes and 0 / false if none.
+refer Adjacency matrix in Images.
+
+Adjacency list:
+Uses index and nested list / hash table foor stroring details.
+refer Adjacency list 1, Adjacency list 2 in Images.
+
+Sparse graph - grapg with less no of edges.
+
+Adjacency list                                     vs                                 Adjacency matrix
+can take up less space(in Sparse graphs)                                              take up more space(in Sparse graphs)
+Faster to iterate over all egdes                                                      slower to iterate over all egdes
+can be slower to look up specific edge                                                Faster to look up specific edge
+
+Adjacency matrix vs Adjacency list in term of complexities (Refer Adjacency matrix vs Adjacency list in images)
+
+Here we use Adjacency list because if there are many number of vertices then that will be a huge matrix.
+
+
+GRAPH TRAVERSAL:
+
+uses:
+
+Peer to peer networking
+Web crawlers
+Finding "closest" matches/ recommendations
+shortest path problem - GPS navigation, solving mazes, AI(shortest path to win the game).
+
+Graph traversal is visiting/updating/checking each vertex in a graph.
+
+In DFS traversal of a tree we have to visit the neighbouring nodes before the sibilings.
+
+
+Dijkstra's algorithm:
+
+Dijkstra's algorithm works on weighted graphs.
+It uses a priority queue.
+
+Uses:
+GPS - finding shortest path
+Network routing - finds open shortest path for a data
+Biology - Used to model the spread of viruses among human
+Airline tickets - finding the cheapest route to your destination
+
+
+Refer Dijkstra's approach in images.
+
+
+
+DYNAMIC PROGRAMMING:
+
+A method for solving a complex program by breaking it down into collection of simpler subproblems, solving each of those subproblems just once, and storing their solutions.
+
+2 Criteria or scenario:
+
+1) Overlapping subproblem:
+A problem is said to be overlapping subproblem if it can be broken down into subproblems which can be reused several times.
+eg: Fibonnaci numbers
+    To calculate fibonnaci(n) we may calculate fibonnaci(n - x) many times (Refere Fibonnaci in images).
+    To calculate fibonnaci(5) we are calculating fibonnaci(3) multiple times.
+
+2) Optimal substructure:
+if a problem is said be have optimal substructure if an optimal solution can be constructed from optimal solutions of its subproblems.
